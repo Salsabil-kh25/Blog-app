@@ -1,0 +1,16 @@
+<input type="text" [(ngModel)]="searchTerm" placeholder="Chercher Article"><br>
+<button (click)="showAddForm = true">Ajouter Article</button>
+<h1>{{ title }}</h1>
+<ul>
+  <li *ngFor="let article of filteredArticles()">
+    <h2>Titre:{{ article.titre }}</h2>
+    <p>Date : {{ article.datepub }}</p>
+    <p>Description:{{ article.description }}</p>
+    <p>Scores : {{ article.score }}</p>
+    <img [src]="article.image" alt="" width="300" height="200">
+    <button (click)="incrementScore(article)">Up</button>
+    <button (click)="decrementScore(article)">Down</button>
+
+  </li>
+</ul>
+<app-add-article *ngIf="showAddForm" (articleAdded)="addArticleToList($event)"></app-add-article>
